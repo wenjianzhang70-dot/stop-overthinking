@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Stop Overthinking!!!</title>
+<meta name="description" content="A silly hand-drawn game: your partner did something small and your brain spirals. Find the one sane thought before time runs out.">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="app">
+  <canvas id="cv"></canvas>
+  <div id="hud" hidden>
+    <div class="row"><span id="lvl"></span><span><span id="tleft"></span><button id="bMute">Sound on</button></span></div>
+    <div id="trigger" class="sketch"></div>
+    <div id="bar" class="sketch"><div id="fill"></div></div>
+  </div>
+
+  <div id="sTitle" class="screen">
+    <span class="tag">Relationship Overthinking Simulator</span>
+    <h1>Stop Overthinking!!!</h1>
+    <p>They didn't text back for an hour and you've already scripted three seasons of drama!! Quick! Find the one sane thought before your brain drowns you!</p>
+    <div class="btns"><button id="bStart" class="primary">Let's go!</button></div>
+    <span class="tag">Or jump straight to</span>
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <div id="sIntro" class="screen" hidden>
+    <span class="tag" id="iLvl"></span>
+    <h2 id="iTrig"></h2>
+    <p id="iTip"></p>
+    <span class="tag">Tap to start the drama!</span>
+  </div>
+
+  <div id="sWin" class="screen" hidden>
+    <span class="tag">What actually happened…</span>
+    <p class="big" id="wReveal"></p>
+    <div class="score sketch" id="wScore"></div>
+    <div class="btns"><button id="bNext" class="primary">Next level!</button><button id="bAgainW">Play again</button></div>
+  </div>
+
+  <div id="sLose" class="screen" hidden>
+    <h2 id="lTitle"></h2>
+    <p class="big" id="lLine"></p>
+    <div class="btns"><button id="bAgainL" class="primary">Again!</button><button id="bHome">Calm down first</button></div>
+  </div>
+</div>
+<script src="./game.js"></script>
+</body>
+</html>

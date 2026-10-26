@@ -1,0 +1,63 @@
+[hidden] { display: none !important; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+
+/* 单一纸面风格：整局都画在一页横线日记纸上，墨线手绘，只有“好念头”会被点亮成太阳黄 */
+:root {
+  --paper: #f7f3ea;
+  --rule: #d9e3ea;
+  --ink: #2b2622;
+  --ink-soft: #6b625a;
+  --sun: #f4c542;
+  --warn: #c8452f;
+  --font: "Chalkboard SE", "Comic Sans MS", "Marker Felt", "Segoe Print", "Bradley Hand", cursive, sans-serif;
+  color-scheme: light;
+}
+html, body { height: 100%; }
+body {
+  background: var(--paper); color: var(--ink); font-family: var(--font);
+  overflow: hidden; touch-action: manipulation; -webkit-user-select: none; user-select: none;
+}
+#app { position: relative; height: 100%; max-width: 480px; margin: 0 auto; }
+canvas { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; display: block; }
+.sketch { border: 2px solid var(--ink); border-radius: 255px 14px 225px 14px / 14px 225px 14px 255px; }
+#hud {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 2; pointer-events: none;
+  padding-block: 12px 8px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 8px; background: var(--paper);
+}
+#hud .row { display: flex; justify-content: space-between; align-items: baseline; font-size: 14px; color: var(--ink-soft); }
+#trigger { font-size: 20px; padding: 8px 14px; text-align: center; background: var(--paper); text-wrap: balance; }
+#bar { height: 12px; padding: 2px; }
+#fill { height: 100%; background: var(--ink); border-radius: 6px 2px 6px 2px; transform-origin: left; }
+#fill.low { background: var(--warn); }
+.screen {
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 5; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; gap: 18px; text-align: center;
+  padding-block: 24px;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+  background: rgba(247, 243, 234, 0.94);
+}
+.screen h1 { font-size: min(44px, 10vw); line-height: 1.15; font-weight: 400; margin: 0; letter-spacing: 2px; }
+.screen h2 { font-size: 30px; font-weight: 400; margin: 0; }
+.screen p { margin: 0; font-size: 17px; line-height: 1.7; max-width: 22em; color: var(--ink-soft); }
+.screen .big { font-size: 22px; color: var(--ink); line-height: 1.6; }
+.screen .tag { font-size: 14px; color: var(--ink-soft); letter-spacing: 1px; }
+.btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+button {
+  font: inherit; font-size: 20px; color: var(--ink); background: var(--paper);
+  padding: 10px 26px; cursor: pointer;
+  border: 2px solid var(--ink); border-radius: 255px 14px 225px 14px / 14px 225px 14px 255px;
+}
+button.primary { background: var(--sun); }
+button:focus-visible { outline: 3px dashed var(--ink); outline-offset: 4px; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.chips button { font-size: 15px; padding: 6px 14px; }
+.score { font-size: 18px; padding: 8px 16px; }
+#bMute { pointer-events: auto; font-size: 13px; padding: 2px 10px; margin-left: 8px; }
+#hud.hit #bar { animation: jolt 0.3s; border-color: var(--warn); }
+#hud.hit #tleft { color: var(--warn); }
+@keyframes jolt { 25% { transform: translateX(-6px); } 50% { transform: translateX(6px); } 75% { transform: translateX(-3px); } }
